@@ -47,7 +47,7 @@ class Token
         if(empty($token)){
             throw new TokenException([
                 'msg' => "请在header中携带token,再请求接口",
-                'code' => 403 ,
+                'code' => 200 ,
                 'error_code' => 403
             ]);
         }
