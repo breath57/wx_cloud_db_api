@@ -53,13 +53,13 @@ class BaseModel extends Model
     /**
      * 单记录(ID)查询
      * @param $collection_name
-     * @param $doc_id
+     * @param $_id
      * @return array
      * @throws Exception
      */
-        public static function singleQuery($collection_name, $doc_id){
+        public static function singleQuery($collection_name, $_id){
             $url = 'https://api.weixin.qq.com/tcb/databasequery?access_token='.self::getAccessToken();
-            $query = 'db.collection("'.$collection_name.'").doc("'.$doc_id.'").get()';
+            $query = 'db.collection("'.$collection_name.'").doc("'.$_id.'").get()';
             $result = my_curl_post($url, $query);
             self::decodeData($result);
             return $result;
@@ -152,14 +152,14 @@ class BaseModel extends Model
     /**
      * 单条(ID)记录删除
      * @param $collection_name
-     * @param $doc_id
+     * @param $_id
      * @return array
      * @throws Exception
      */
-        public static function singleDeleter($collection_name, $doc_id){
-            if(empty($doc_id)) throw new ParameterErrorException(['msg'=>'_id不能为空']);
+        public static function singleDeleter($collection_name, $_id){
+            if(empty($_id)) throw new ParameterErrorException(['msg'=>'_id不能为空']);
             $url = 'https://api.weixin.qq.com/tcb/databasedelete?access_token='.self::getAccessToken();
-            $query = 'db.collection("'.$collection_name.'").doc("'.$doc_id.'").remove()';
+            $query = 'db.collection("'.$collection_name.'").doc("'.$_id.'").remove()';
             return my_curl_post($url,$query);
         }
 
@@ -168,16 +168,16 @@ class BaseModel extends Model
     /**
      * 单记录(ID)更新
      * @param $collection_name
-     * @param $doc_id
+     * @param $_id
      * @param $update_content
      * @return array
      * @throws BaseException
      * @throws Exception
      */
-        public static function singleUpdate($collection_name, $doc_id, $update_content){
+        public static function singleUpdate($collection_name, $_id, $update_content){
             $update_content = self::checkWhere($update_content,'upt_content内容格式要求为{key: value}');
             $url = 'https://api.weixin.qq.com/tcb/databaseupdate?access_token='.self::getAccessToken();
-            $query = 'db.collection("'.$collection_name.'").doc("'.$doc_id.'").update({data:'.$update_content.'})';
+            $query = 'db.collection("'.$collection_name.'").doc("'.$_id.'").update({data:'.$update_content.'})';
             return my_curl_post($url,$query);
         }
 

@@ -40,7 +40,7 @@ class Common extends BaseController
         public static function singleGet(Request $request){
             (new FileIDMissValidate())->goCheck();
             return BaseModel::singleQuery($request->post('collection_name'),
-                $request->post('doc_id'));
+                $request->post('_id'));
         }
 
         public static function getByPaginate(Request $request){
@@ -72,7 +72,7 @@ class Common extends BaseController
         public static function singleDel(Request $request){
             (new FileIDMissValidate())->goCheck();
             return BaseModel::singleDeleter($request->post('collection_name'),
-                $request->post('doc_id'));
+                $request->post('_id'));
         }
 
         //TODO:更新
@@ -80,7 +80,7 @@ class Common extends BaseController
         public static function singleUpt(Request $request){
             (new SingleUptValidate())->goCheck();
             return BaseModel::singleUpdate($request->post('collection_name'),
-                $request->post('doc_id'), $request->post('upt_content'));
+                $request->post('_id'), $request->post('upt_content'));
         }
 
         public static function batchUpt(Request $request){
