@@ -1,12 +1,11 @@
 # 1. 简介
 ---
-<pre>
+
 由于在微信小程序中对云数据库操作权限的限制，无法对其他用户创建的记录进行修改。而云数据库提供第三方使用的HTTP操作接口，可以拥有该权限，但无法直接在小程序中使用，故该项目基于ThinkPHP 5封装了第三方对微信小程序云数据库的操作的方法，并提供相应的HTTP访问接口，接口文档见下文。
 
 该项目是针对校园池Green项目开发后端服务，但在设计之初考虑到了通用性，提供的接口都非常的抽象，可以应对非常复杂的需求。
 
 并且，可以通过少量的修改，即可应用其它需求的项目之中。
-</pre>
 
 # 2. 适配不同项目
 
@@ -49,9 +48,9 @@ return [
       ${domain}: https://www.breath57.cn
 ```
 ---
-# 查询操作 #
+## 查询操作 ##
 
-## 单记录查询 ##
+### 单记录查询 ###
  **请求地址**
 ```http
   POST ${domain}/api/v1/com/get/sig 
@@ -64,7 +63,7 @@ collection_name|string||是|操作的集合名称
 _id|string||是|需要请求的记录_id
 token|string||是|接口调用凭证
 
-#### **返回值** ####
+##### **返回值** #####
 
 **Object**
 返回的JSON数据包
@@ -88,7 +87,7 @@ msg|错误信息
 ---
 
 
-## 多记录查询 ##
+### 多记录查询 ###
  **请求地址**
 ```http
   POST ${domain}/api/v1/com/get/bat 
@@ -105,7 +104,7 @@ skip|number|0||符合条件记录的偏移量
 limit|number|80||每次取得记录得最大数量
 token|string||是|接口调用凭证
 
-#### **返回值** ####
+##### **返回值** #####
 
 **Object**
 返回的JSON数据包
@@ -131,7 +130,7 @@ data|Array|记录组成的JS对象数组
 ---
 
 
-## 记录分页查询 ##
+### 记录分页查询 ###
  **请求地址**
 ```http
   POST ${domain}/api/v1/com/get/pagin 
@@ -148,7 +147,7 @@ order_key|string|addtime||排序关键字
 order_type|string|desc||默认降序,升序为asc
 token|string||是|接口调用凭证
 
-#### **返回值** ####
+##### **返回值** #####
 
 **Object**
 返回的JSON数据包
@@ -171,7 +170,7 @@ data|Array|记录组成的JS对象数组
 
 ---
 
-## 获得集合记录数 ##
+### 获得集合记录数 ###
  **请求地址**
 ```http
   POST ${domain}/api/v1/com/get/count 
@@ -184,7 +183,7 @@ collection_name|string||是|操作的集合名称
 where|string|{}||查询条件格式: {key: value}
 token|string||是|接口调用凭证
 
-#### **返回值** ####
+##### **返回值** #####
 
 **Object**
 返回的JSON数据包
@@ -208,9 +207,9 @@ count|number|请求查询集合的记录数
 
 ---
 
-# 获取TOKEN令牌 #
+## 获取TOKEN令牌 ##
 
-## 请求token ##
+### 请求token ###
  **请求地址**
 ```http
   POST ${domain}/api/v1/com/get/token 
@@ -222,7 +221,7 @@ count|number|请求查询集合的记录数
 uid|string||是|用户名
 pw|string||是|用户的密码
 
-#### **返回值** ####
+##### **返回值** #####
 
 **Object**
 返回的JSON数据包
@@ -245,9 +244,9 @@ token|string|令牌
 
 ---
 
-# 删除操作 #
+## 删除操作 ##
 
-## 单记录删除 ##
+### 单记录删除 ###
  **请求地址**
 ```http
   POST ${domain}/api/v1/com/del/sig 
@@ -259,7 +258,7 @@ token|string|令牌
 collection_name|string||是|需要操作的集合名
 _id|string||是|记录_id
 
-#### **返回值** ####
+##### **返回值** #####
 
 **Object**
 返回的JSON数据包
@@ -282,7 +281,7 @@ deleted|number|删除记录数量
 
 ---
 
-## 多记录删除 ##
+### 多记录删除 ###
  **请求地址**
 ```http
   POST ${domain}/api/v1/com/del/bat 
@@ -295,7 +294,7 @@ collection_name|string||是|需要操作的集合名
 where|string||是|查询条件:格式{key:value}
 token|string||是|接口调用凭证
 
-#### **返回值** ####
+##### **返回值** #####
 
 **Object**
 返回的JSON数据包
@@ -318,9 +317,9 @@ deleted|number|删除记录数量
 
 ---
 
-# 更新操作 #
+## 更新操作 ##
 
-## 单记录更新 ##
+### 单记录更新 ###
  **请求地址**
 ```http
   POST ${domain}/api/v1/com/upt/sig 
@@ -334,7 +333,7 @@ _id|string||是|记录_id
 upt_content|string||是|修改的字段值格式:{key:value,key2:value2}
 token|string||是|接口调用凭证
 
-#### **返回值** ####
+##### **返回值** #####
 
 **Object**
 返回的JSON数据包
@@ -358,7 +357,7 @@ modify|number|修改的记录数
 
 ---
 
-## 多记录更新 ##
+### 多记录更新 ###
  **请求地址**
 ```http
   POST ${domain}/api/v1/com/upt/bat 
@@ -372,7 +371,7 @@ where|string||是|查询条件:格式{key:value}
 upt_content|string||是|修改的字段值格式:{key:value,key2:value2}
 token|string||是|接口调用凭证
 
-#### **返回值** ####
+##### **返回值** #####
 
 **Object**
 返回的JSON数据包
@@ -396,9 +395,9 @@ modify|number|修改的记录数
 
 ---
 
-# 添加操作 #
+## 添加操作 ##
 
-## 增加一条记录或多条记录 ##
+### 增加一条记录或多条记录 ###
  **请求地址**
 ```http
   POST ${domain}/api/v1/com/add 
@@ -411,7 +410,7 @@ collection_name|string||是|需要操作的集合名
 records|string||是|格式:[{key:value,key2:value}, {...}, ...]
 token|string||是|接口调用凭证
 
-#### **返回值** ####
+##### **返回值** #####
 
 **Object**
 返回的JSON数据包
@@ -434,9 +433,9 @@ id_list|Array.< string >|插入成功的数据集合主键_id
 
 ---
 
-# 文件操作 #
+## 文件操作 ##
 
-## 获取文件上传链接 ##
+### 获取文件上传链接 ###
 
  **请求地址**
 ```http
@@ -449,7 +448,7 @@ id_list|Array.< string >|插入成功的数据集合主键_id
 path|string||是|上传路径
 token|string||是|接口调用凭证
 
-#### **返回值** ####
+##### **返回值** #####
 
 **Object**
 返回的JSON数据包
@@ -487,7 +486,7 @@ x-cos-meta-fileid||文件的二进制内容
 
 ---
 
-## 获取文件的下载链接 ##
+### 获取文件的下载链接 ###
  **请求地址**
 ```http
   POST ${domain}/api/v1/com/get/dwurl 
@@ -499,7 +498,7 @@ x-cos-meta-fileid||文件的二进制内容
 file_id|string||是|file_id
 token|string||是|接口调用凭证
 
-#### **返回值** ####
+##### **返回值** #####
 
 **Object**
 返回的JSON数据包
@@ -524,7 +523,7 @@ status|number|状态码:0(成功)
 
 ---
 
-## 多文件删除 ##
+### 多文件删除 ###
  **请求地址**
 ```http
   POST ${domain}/api/v1/com/del/file 
@@ -536,7 +535,7 @@ status|number|状态码:0(成功)
 fileid_list|string||是|格式:`["file_id","file_id2",...]`
 token|string||是|接口调用凭证
 
-#### **返回值** ####
+##### **返回值** #####
 
 **Object**
 返回的JSON数据包
@@ -568,7 +567,7 @@ status|number|状态码:0(成功)
 
 ---
 
-# *End*
+## *End*
 
 
 
