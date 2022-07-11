@@ -1,44 +1,10 @@
-# 1. 简介
----
-<pre>
-由于在微信小程序中对云数据库操作权限的限制，无法对其他用户创建的记录进行修改。而云数据库提供第三方使用的HTTP操作接口，可以拥有该权限，但无法直接在小程序中使用，故该项目基于ThinkPHP 5封装了第三方对微信小程序云数据库的操作的方法，并提供相应的HTTP访问接口，接口文档见下文。
+**目录**
 
-该项目是针对校园池Green项目开发后端服务，但在设计之初考虑到了通用性，提供的接口都非常的抽象，可以应对非常复杂的需求。
+[TOC]
 
-并且，可以通过少量的修改，即可应用其它需求的项目之中。
-</pre>
+校园池Green后台管理 API v1.0.1  
+===
 
-# 2. 适配不同项目
-
-修改`application/extra/wx.php`文件的相关配置
-
-其中`env`、`appid`、`secret`必须修改。
-```php
-return [
-    //微信云数据库的配置信息
-    //环境ID
-    'env' => 'breath57-iwbln',
-    //url前缀
-    'baseUrl' => 'https://api.weixin.qq.com',
-    //openid
-
-    //access_token
-
-    //appid
-    'appid' => 'wxd996ad727f988413',
-    //grant_type
-    'grant_type' => 'client_credential',
-    //
-    'content_type' => 'application/json',
-
-    //secret
-    'secret' => 'e8200c00d95bed307ec0d124c2a08cff'
-
-    //回来拿一个获取 access_token的方法
-];
-```
-
-# 3. 校园池Green后台管理 API v1.0.1文档  
 ---
 ```
       作者:何志伟             
@@ -569,8 +535,3 @@ status|number|状态码:0(成功)
 ---
 
 # *End*
-
-
-
-
-

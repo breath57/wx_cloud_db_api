@@ -11,6 +11,7 @@ use app\api\validate\AddValidate;
 use app\api\validate\BatchUptValidate;
 use app\api\validate\ComGetDataValidate;
 use app\api\validate\DelFileValidate;
+use app\api\validate\GetCountValidate;
 use app\api\validate\FileIDMissValidate;
 use app\api\validate\FileIDNotEmpty;
 use app\api\validate\GetToken;
@@ -50,9 +51,9 @@ class Common extends BaseController
                 $request->post('order_type'));
         }
 
-        public static function getCount(){
-            (new ComGetDataValidate())->goCheck();
-            return BaseModel::getCount(input('param.collection_name'));
+        public static function getCount(Request $request){
+            (new GetCountValidate())->goCheck();
+            return BaseModel::getCount($request->post('collection_name'), $request->post('where'));
         }
 
         public static function getToken(Request $request) {

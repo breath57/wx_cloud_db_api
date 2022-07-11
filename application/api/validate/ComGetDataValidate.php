@@ -10,6 +10,6 @@ class ComGetDataValidate extends BaseValidate
             'collection_name'=>'require',
             'skip' => 'integer|egt:0',
             'limit' => 'integer|egt:1',
-            'order_content' => 'checkOrder'
+            'order_type' => 'checkOrder'
         ];
 }

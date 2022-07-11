@@ -34,7 +34,7 @@ class AppToken extends Token
         }else{
             throw new TokenException([
                 'msg' => "账号或密码错误",
-                'code' => 404,
+                'code' => 200,
                 'error_code' => 404
             ]);
         }

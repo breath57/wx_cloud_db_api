@@ -32,7 +32,7 @@ class BaseValidate  extends Validate
             if(!$result){
                 throw new ParameterErrorException([
                    'msg' => $this->error ,
-                    'code' => 400,
+                    'code' => 200,
                     'error_code' => 10003
                 ]);
             } else{

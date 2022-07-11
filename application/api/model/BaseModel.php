@@ -78,20 +78,20 @@ class BaseModel extends Model
      * @throws Exception
      */
         public static function queryByPaginate($collection_name, $page_number, $page_size, $where, $order_key, $order_type){
-            $result_c = (self::getCount($collection_name));
+            $result_c = (self::getCount($collection_name, $where));
             $count = $result_c['count'] + 0;
             if($count<=0){
                 throw new BaseException([
                     'msg' => $collection_name.'为空集合',
                     'error_code' => 404,
-                    'code' => 404
+                    'code' => 200
                 ]);
             }else{
                 $total_pages = ceil($count/$page_size);
                 if( ($total_pages+0) < ($page_number+0) ){
                     throw new BaseException([
                         'msg' => "当前请求页:".$page_number." 不存在",
-                        'code' => 404,
+                        'code' => 200,
                         'error_code' => 404
                     ]);
                 }
@@ -119,9 +119,10 @@ class BaseModel extends Model
      * @return array
      * @throws Exception
      */
-    public static function getCount($collection_name){
+    public static function getCount($collection_name, $where = '{}'){
         $url = 'https://api.weixin.qq.com/tcb/databasecount?access_token='.self::getAccessToken();
-        $query = "db.collection(\"".$collection_name."\").count()";
+        $where = self::checkWhere($where);
+        $query = "db.collection(\"".$collection_name."\").where(".$where.").count()";
         return my_curl_post($url,$query);
     }
 
@@ -139,7 +140,7 @@ class BaseModel extends Model
             if($where&&((!(strpos($where,'{')+1)||!strpos($where,'}')))){
                 throw new BaseException([
                     'msg'=>'传入的where格式必须为 { key:value }',
-                    'code'=>403
+                    'code' => 200
                 ]);
             }
             $where = self::checkWhere($where);
@@ -285,7 +286,7 @@ class BaseModel extends Model
             if($where&&((!(strpos($where,'{')+1)||!strpos($where,'}')))){
                 throw new BaseException([
                     'msg' => $msg ? $msg : '传入的where格式必须为 { key:value }',
-                    'code' => 403
+                    'code' => 200
                 ]);
             }
              $where||($where='{}');
